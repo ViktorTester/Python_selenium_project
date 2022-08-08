@@ -21,7 +21,7 @@ def test_guest_should_see_login_link(browser):
 
 # def test_guest_can_go_to_login_page(browser):
 #     link = "http://selenium1py.pythonanywhere.com/"
-#     browser.get(link)pytest - v - -tb=line --browser_name=chrome --language=en test_main_page.py
+#     browser.get(link)    pytest - v - -tb=line --browser_name=chrome --language=en test_main_page.py
 #     login_link = browser.find_element(By.CSS_SELECTOR, "#login_link")
 #     login_link.click()
 
