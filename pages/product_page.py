@@ -20,3 +20,17 @@ class ProductPage(BasePage):
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+
+    def should_be_right_book(self):
+        item_name = self.browser.find_element(*ProductPageLocators.ITEM_NAME)
+        item_in_cart_name = self.browser.find_element(*ProductPageLocators.ITEM_IN_CART_NAME)
+        assert item_name.text == item_in_cart_name.text, 'incorrect book'
+
+    def should_be_right_price(self):
+        item_in_cart_price = self.browser.find_element(*ProductPageLocators.ITEM_IN_CART_PRICE)
+        item_price = self.browser.find_element(*ProductPageLocators.ITEM_PRICE)
+        assert item_in_cart_price.text == item_price.text, 'wrong price'
+
+
+
