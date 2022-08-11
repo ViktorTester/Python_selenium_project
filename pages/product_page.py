@@ -21,7 +21,6 @@ class ProductPage(BasePage):
         except NoAlertPresentException:
             print("No second alert presented")
 
-
     def should_be_right_book(self):
         item_name = self.browser.find_element(*ProductPageLocators.ITEM_NAME)
         item_in_cart_name = self.browser.find_element(*ProductPageLocators.ITEM_IN_CART_NAME)
@@ -31,6 +30,14 @@ class ProductPage(BasePage):
         item_in_cart_price = self.browser.find_element(*ProductPageLocators.ITEM_IN_CART_PRICE)
         item_price = self.browser.find_element(*ProductPageLocators.ITEM_PRICE)
         assert item_in_cart_price.text == item_price.text, 'wrong price'
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_dissapear(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should dissapear"
 
 
 
