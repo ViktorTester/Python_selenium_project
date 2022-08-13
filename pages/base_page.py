@@ -48,4 +48,8 @@ class BasePage():
 
         return True
 
+    def go_to_basket(self):
+        link = self.browser.find_element(*BasePageLocators.CHECK_THE_BASKET)
+        link.click()
+
 

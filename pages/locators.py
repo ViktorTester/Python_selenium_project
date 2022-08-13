@@ -1,9 +1,6 @@
 from selenium.webdriver.common.by import By
 
 
-# class MainPageLocators():
-#     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-
 class LoginPageLocators():
     LOGIN_SUBMIT = (By.NAME, "login_submit")
     REGISTRATION_SUBMT = (By.NAME, "registration_submit")
@@ -19,3 +16,8 @@ class ProductPageLocators():
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    CHECK_THE_BASKET = (By.XPATH, "//*[@id='default']/header/div[1]/div/div[2]/span/a")
+    #(By.XPATH, ("//a[text()='Посмотреть корзину']")) при смене языка, поиск не сработает.
+    CART_IS_EMPY_MSG = (By.XPATH, "//*[@id='content_inner']/p")
+    CART_IS_EMPTY = (By.CLASS_NAME, "thumbnail")
+
