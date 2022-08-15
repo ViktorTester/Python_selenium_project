@@ -5,7 +5,6 @@ from .locators import BasePageLocators
 from .locators import LoginPageLocators
 
 
-
 class BasePage():
     def __init__(self, browser, url):
         self.browser = browser
@@ -57,7 +56,3 @@ class BasePage():
     def should_be_authorized_user(self):
         assert self.is_element_present(*LoginPageLocators.USER_ICON), "User icon is not presented," \
                                                                      " probably unauthorised user"
-
-
-
-

@@ -1,10 +1,10 @@
+import time
+import pytest
 from .pages.product_page import ProductPage
 from .pages.main_page import MainPage
 from .pages.basket_page import BasketPage
 from .pages.login_page import LoginPage
 from .pages.base_page import BasePage
-import pytest
-import time
 
 
 @pytest.mark.parametrize('link', [pytest.param("coders-at-work_207/?promo=newYear2019", marks=pytest.mark.xfail(reason="wont fix it right now"))])
@@ -29,12 +29,14 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.open()
     page.should_be_login_link()
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = MainPage(browser, link)
@@ -43,6 +45,16 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page = BasketPage(browser, link)
     page.should_be_empty_cart_msg()
     page.should_be_empty_cart()
+
+@pytest.mark.need_review
+@pytest.mark.parametrize('links', ["0", "1", "2", "3", "4", "5", "6", pytest.param("7", marks=pytest.mark.xfail(reason="wont fix it right now")), "8", "9"])
+def test_guest_can_add_product_to_basket(browser, links):
+    link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{links}"
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_product_to_basket()
+    page.should_be_right_book()
+    page.should_be_right_price()
 
 @pytest.mark.registration
 class TestUserAddToBasketFromProductPage():
@@ -61,6 +73,7 @@ class TestUserAddToBasketFromProductPage():
         page.open()
         page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         self.link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
         page = ProductPage(browser, self.link)
